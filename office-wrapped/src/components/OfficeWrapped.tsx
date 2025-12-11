@@ -752,6 +752,19 @@ const OfficeWrapped: React.FC = () => {
       <p className="mt-6 text-slate-500 text-sm text-center">
         Generated for {year} • Use arrow keys to navigate • Don&apos;t forget your timesheet
       </p>
+
+      {/* Footer with copyright and disclaimer */}
+      <footer className="mt-12 pt-8 border-t border-slate-800 w-full max-w-4xl text-center">
+        <p className="text-slate-400 text-sm mb-3">
+          © {new Date().getFullYear()} Office Wrapped. All rights reserved.
+        </p>
+        <p className="text-slate-500 text-xs max-w-2xl mx-auto leading-relaxed">
+          <span className="font-semibold text-slate-400">Disclaimer:</span> This is a satirical website 
+          created for entertainment purposes only. All statistics are randomly generated and fictional. 
+          This site is not affiliated with, endorsed by, or connected to any company or organization. 
+          Any resemblance to actual corporate experiences is purely coincidental (and probably relatable).
+        </p>
+      </footer>
     </div>
   );
 };
