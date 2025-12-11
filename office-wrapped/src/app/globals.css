@@ -1,0 +1,97 @@
+/* Office Wrapped - Global Styles */
+/* v1.0.0 */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+}
+
+/* Base styles */
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(59, 130, 246, 0.5);
+  color: white;
+}
+
+/* Animation for the bounce effect on notifications */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-10%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* Utility classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Gradient text utility */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
+  
+  /* Card glass effect */
+  .glass {
+    @apply bg-slate-700/50 backdrop-blur-sm border border-slate-600;
+  }
+}
+
+/* Ensure aspect ratio works on older browsers */
+@supports not (aspect-ratio: 16 / 9) {
+  .aspect-\[16\/9\] {
+    position: relative;
+    padding-bottom: 56.25%;
+  }
+  
+  .aspect-\[16\/9\] > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
