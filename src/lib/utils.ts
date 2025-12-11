@@ -1,7 +1,34 @@
 // Utility functions for Office Wrapped
-// v1.0.0
+// v1.1.0 - Added zip download, updated to 2025
 
 import html2canvas from 'html2canvas';
+import JSZip from 'jszip';
+
+/**
+ * Captures a slide element as a blob
+ */
+export const captureSlideAsBlob = async (element: HTMLElement): Promise<Blob> => {
+  const canvas = await html2canvas(element, {
+    scale: 2,
+    backgroundColor: null,
+    logging: false,
+    useCORS: true,
+  });
+
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => {
+        if (!blob) {
+          reject(new Error('Failed to create blob'));
+          return;
+        }
+        resolve(blob);
+      },
+      'image/png',
+      1.0
+    );
+  });
+};
 
 /**
  * Downloads a single slide as an image
@@ -12,28 +39,13 @@ export const downloadSlideAsImage = async (
   slideIndex: number
 ): Promise<void> => {
   try {
-    const canvas = await html2canvas(element, {
-      scale: 2,
-      backgroundColor: null,
-      logging: false,
-      useCORS: true,
-    });
-
-    canvas.toBlob(
-      (blob) => {
-        if (!blob) {
-          throw new Error('Failed to create blob');
-        }
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.download = `office-wrapped-${year}-slide-${slideIndex + 1}.png`;
-        link.href = url;
-        link.click();
-        URL.revokeObjectURL(url);
-      },
-      'image/png',
-      1.0
-    );
+    const blob = await captureSlideAsBlob(element);
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.download = `office-wrapped-${year}-slide-${slideIndex + 1}.png`;
+    link.href = url;
+    link.click();
+    URL.revokeObjectURL(url);
   } catch (error) {
     console.error('Error generating image:', error);
     throw new Error('Failed to generate image. Please try again.');
@@ -41,30 +53,41 @@ export const downloadSlideAsImage = async (
 };
 
 /**
- * Downloads all slides as individual images
+ * Downloads all slides as a zip file
  */
-export const downloadAllSlides = async (
-  getSlideElement: (index: number) => HTMLElement | null,
+export const downloadAllSlidesAsZip = async (
+  captureSlide: (index: number) => Promise<Blob | null>,
   totalSlides: number,
   year: number,
-  setActiveSlide: (index: number) => void,
+  slideNames: string[],
   onProgress?: (current: number, total: number) => void
 ): Promise<void> => {
+  const zip = new JSZip();
+  const folder = zip.folder(`office-wrapped-${year}`);
+
+  if (!folder) {
+    throw new Error('Failed to create zip folder');
+  }
+
   for (let i = 0; i < totalSlides; i++) {
-    // Update progress if callback provided
     onProgress?.(i + 1, totalSlides);
-    
-    // Set active slide and wait for render
-    setActiveSlide(i);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    
-    const element = getSlideElement(i);
-    if (element) {
-      await downloadSlideAsImage(element, year, i);
-      // Small delay between downloads
-      await new Promise((resolve) => setTimeout(resolve, 300));
+
+    const blob = await captureSlide(i);
+    if (blob) {
+      const slideName = slideNames[i] || `slide-${i + 1}`;
+      const fileName = `${String(i + 1).padStart(2, '0')}-${slideName}.png`;
+      folder.file(fileName, blob);
     }
   }
+
+  // Generate and download zip
+  const zipBlob = await zip.generateAsync({ type: 'blob' });
+  const url = URL.createObjectURL(zipBlob);
+  const link = document.createElement('a');
+  link.download = `office-wrapped-${year}.zip`;
+  link.href = url;
+  link.click();
+  URL.revokeObjectURL(url);
 };
 
 /**

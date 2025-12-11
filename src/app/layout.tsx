@@ -1,5 +1,5 @@
 // Office Wrapped - Root Layout with SEO
-// v1.0.0
+// v1.1.0 - Updated to 2025
 
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
@@ -21,7 +21,7 @@ const geistMono = localFont({
 // SEO Metadata
 export const metadata: Metadata = {
   metadataBase: new URL('https://office-wrapped.vercel.app'),
-  title: 'Office Wrapped 2024 | Your Year in Corporate Survival',
+  title: 'Office Wrapped 2025 | Your Year in Corporate Survival',
   description:
     'Generate your satirical Office Wrapped stats! See how many meetings, emails, and coffee breaks defined your year in corporate survival. Share your results on social media.',
   keywords: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://office-wrapped.vercel.app',
     siteName: 'Office Wrapped',
-    title: 'Office Wrapped 2024 | Your Year in Corporate Survival',
+    title: 'Office Wrapped 2025 | Your Year in Corporate Survival',
     description:
       'Generate your satirical Office Wrapped stats! See how many meetings, emails, and coffee breaks defined your year in corporate survival.',
   },
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   // Note: Twitter images are generated dynamically via twitter-image.tsx
   twitter: {
     card: 'summary_large_image',
-    title: 'Office Wrapped 2024 | Your Year in Corporate Survival',
+    title: 'Office Wrapped 2025 | Your Year in Corporate Survival',
     description:
       'Generate your satirical Office Wrapped stats! See how many meetings, emails, and coffee breaks defined your year.',
     creator: '@officewrapped',
