@@ -1,5 +1,5 @@
 // SlideCard component for Office Wrapped
-// v1.0.0 - Extracted from main component
+// v1.0.1 - Reduced content padding for better stats visibility on full screen
 
 import React, { forwardRef, ReactNode } from 'react';
 import type { SlideInfo } from '@/types';
@@ -38,9 +38,9 @@ export const SlideCard = forwardRef<HTMLDivElement, SlideCardProps>(
           </div>
         </div>
 
-        {/* Slide content */}
+        {/* Slide content - reduced padding for better stats visibility */}
         <div
-          className={`flex-1 p-4 sm:p-10 bg-gradient-to-b from-slate-800 to-slate-900 relative transition-opacity duration-300 ${
+          className={`flex-1 p-4 sm:p-8 bg-gradient-to-b from-slate-800 to-slate-900 relative transition-opacity duration-300 ${
             isTransitioning ? 'opacity-0' : 'opacity-100'
           }`}
         >
