@@ -1,5 +1,5 @@
 /* Office Wrapped - Global Styles */
-/* v1.0.0 */
+/* v1.2.0 - Fixed gradient text and backdrop-blur export issues */
 
 @tailwind base;
 @tailwind components;
@@ -93,5 +93,147 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
+  }
+}
+
+/* Export-specific styling for mobile - applied during image capture */
+/* Ensures proper spacing and prevents content from being squashed */
+
+/* Base exporting styles - ensure card renders properly */
+.exporting.slide-card {
+  /* Ensure the card has explicit dimensions during export */
+  min-height: auto !important;
+  overflow: visible !important;
+}
+
+/* FIX: Gradient text causes rectangular bar artifact in html2canvas */
+/* Override bg-clip-text with solid color during export */
+.exporting .bg-clip-text {
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  background: transparent !important;
+}
+
+/* Intro slide gradient text - blue/purple gradient becomes blue */
+.exporting h3.from-blue-400 {
+  color: #60a5fa !important; /* blue-400 */
+}
+
+/* Summary slide gradient text - yellow/orange gradient becomes yellow */
+.exporting h3.from-yellow-400 {
+  color: #facc15 !important; /* yellow-400 */
+}
+
+/* FIX: backdrop-blur can cause rendering artifacts in html2canvas */
+/* Disable backdrop-blur during export */
+.exporting .backdrop-blur-sm {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Ensure semi-transparent backgrounds still look good without blur */
+.exporting .bg-slate-700\/50 {
+  background-color: rgba(51, 65, 85, 0.7) !important; /* Slightly more opaque */
+}
+
+.exporting .bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.3) !important; /* Slightly more opaque */
+}
+
+/* Ensure header content is visible and has proper spacing during export */
+.exporting .slide-header {
+  padding: 0.875rem 1rem !important;
+  min-height: fit-content !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure header title doesn't get truncated during export */
+.exporting .slide-title {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  line-height: 1.25 !important;
+  word-wrap: break-word !important;
+}
+
+/* Ensure slide content area has proper spacing during export on mobile */
+.exporting .slide-content {
+  padding: 1rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: visible !important;
+}
+
+/* Ensure flex content centers properly and doesn't collapse */
+.exporting .slide-content > div {
+  flex-shrink: 0 !important;
+}
+
+/* Fix text rendering during export - prevent text from collapsing into blocks */
+.exporting * {
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+/* Ensure grid layouts maintain proper spacing on mobile export */
+.exporting .grid {
+  gap: 0.5rem !important;
+}
+
+/* Ensure text content has proper line height during export */
+.exporting p {
+  line-height: 1.5 !important;
+}
+
+/* Ensure heading text doesn't get compressed */
+.exporting h3 {
+  line-height: 1.25 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Ensure stat numbers and labels have proper spacing */
+.exporting .bg-slate-700\/50,
+.exporting [class*="bg-purple-500"],
+.exporting [class*="bg-red-500"],
+.exporting [class*="bg-orange-500"],
+.exporting [class*="bg-blue-500"],
+.exporting [class*="bg-green-500"],
+.exporting [class*="bg-yellow-500"] {
+  padding: 0.625rem !important;
+}
+
+/* Intro slide specific - ensure cards have proper mobile spacing */
+.exporting .grid-cols-3 > div {
+  padding: 0.5rem !important;
+}
+
+/* Summary slide specific - ensure 2x2 grid spacing */
+.exporting .grid-cols-2 > div {
+  padding: 0.625rem !important;
+}
+
+/* Ensure buzzword cloud has proper spacing during export */
+.exporting .flex-wrap {
+  gap: 0.5rem 0.75rem !important;
+}
+
+/* Desktop export styles - slightly more generous spacing */
+@media (min-width: 640px) {
+  .exporting .slide-header {
+    padding: 1rem !important;
+  }
+  
+  .exporting .slide-content {
+    padding: 1.5rem !important;
+  }
+  
+  .exporting .grid {
+    gap: 1rem !important;
+  }
+  
+  .exporting .grid-cols-3 > div,
+  .exporting .grid-cols-2 > div {
+    padding: 1rem !important;
   }
 }

@@ -1,5 +1,5 @@
 // Utility functions for Office Wrapped
-// v1.3.0 - Added latestPingDay, helper functions for random selection
+// v1.4.0 - Improved mobile export spacing with exporting class
 
 import html2canvas from 'html2canvas';
 import JSZip from 'jszip';
@@ -32,14 +32,24 @@ export const getRandomItems = <T>(items: T[], count: number): T[] => {
 
 /**
  * Captures a slide element as a blob
+ * Applies 'exporting' class during capture for export-specific styling
  */
 export const captureSlideAsBlob = async (element: HTMLElement): Promise<Blob> => {
+  // Add exporting class for export-specific styling
+  element.classList.add('exporting');
+  
+  // Small delay to ensure styles are applied
+  await new Promise((resolve) => setTimeout(resolve, 50));
+  
   const canvas = await html2canvas(element, {
     scale: 2,
     backgroundColor: null,
     logging: false,
     useCORS: true,
   });
+
+  // Remove exporting class after capture
+  element.classList.remove('exporting');
 
   return new Promise((resolve, reject) => {
     canvas.toBlob(
