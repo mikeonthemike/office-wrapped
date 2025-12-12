@@ -360,10 +360,10 @@ const OfficeWrapped: React.FC = () => {
         </div>
       </div>
 
-      {/* Main card */}
+      {/* Main card - taller on mobile to avoid scrolling within the card */}
       <div
         ref={cardRef}
-        className="relative w-full max-w-4xl aspect-[4/3] sm:aspect-[16/9] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col border-2 border-slate-700"
+        className="relative w-full max-w-4xl aspect-[3/4] sm:aspect-[16/9] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col border-2 border-slate-700"
       >
         {/* Card header */}
         <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 sm:p-6 flex justify-between items-center">
@@ -380,7 +380,7 @@ const OfficeWrapped: React.FC = () => {
 
         {/* Slide content */}
         <div
-          className={`flex-1 p-4 sm:p-10 bg-gradient-to-b from-slate-800 to-slate-900 relative transition-opacity duration-300 overflow-y-auto ${
+          className={`flex-1 p-4 sm:p-10 bg-gradient-to-b from-slate-800 to-slate-900 relative transition-opacity duration-300 ${
             isTransitioning ? 'opacity-0' : 'opacity-100'
           }`}
         >
