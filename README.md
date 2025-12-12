@@ -20,6 +20,7 @@ A satirical "Year in Review" generator for corporate life. Create and share your
 - **Styling**: Tailwind CSS
 - **Icons**: Lucide React
 - **Image Generation**: html2canvas
+- **Zip Downloads**: JSZip
 - **Deployment**: Vercel
 
 ## Getting Started
@@ -55,19 +56,46 @@ npm run dev
 office-wrapped/
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx          # Root layout with SEO
-│   │   ├── page.tsx            # Main page
-│   │   ├── globals.css         # Global styles
-│   │   ├── opengraph-image.tsx # Dynamic OG image
-│   │   └── twitter-image.tsx   # Dynamic Twitter card
+│   │   ├── layout.tsx              # Root layout with SEO
+│   │   ├── page.tsx                # Main page
+│   │   ├── globals.css             # Global styles
+│   │   ├── fonts/                  # Custom fonts (Geist)
+│   │   ├── opengraph-image.tsx     # Dynamic OG image
+│   │   └── twitter-image.tsx       # Dynamic Twitter card
 │   ├── components/
-│   │   └── OfficeWrapped.tsx   # Main component
+│   │   ├── OfficeWrapped.tsx       # Main orchestrator component
+│   │   ├── SlideContent.tsx        # Slide content renderer
+│   │   ├── icons/
+│   │   │   └── index.tsx           # Custom SVG icons (Twitter, LinkedIn)
+│   │   ├── slides/
+│   │   │   ├── index.ts            # Barrel export
+│   │   │   ├── IntroSlide.tsx      # Welcome slide
+│   │   │   ├── MeetingsSlide.tsx   # Meetings stats slide
+│   │   │   ├── NotificationsSlide.tsx # Notifications slide
+│   │   │   ├── EmailsSlide.tsx     # Email stats slide
+│   │   │   ├── ProductivitySlide.tsx # Productivity slide
+│   │   │   ├── StatusSlide.tsx     # Status/availability slide
+│   │   │   ├── BuzzwordsSlide.tsx  # Corporate buzzwords slide
+│   │   │   └── SummarySlide.tsx    # Year summary slide
+│   │   └── ui/
+│   │       ├── index.ts            # Barrel export
+│   │       ├── ControlButtons.tsx  # Randomize/download controls
+│   │       ├── Footer.tsx          # App footer
+│   │       ├── ProgressBar.tsx     # Slide progress indicator
+│   │       ├── ShareMenu.tsx       # Social sharing menu
+│   │       ├── SlideCard.tsx       # Slide container card
+│   │       └── SlideNavigation.tsx # Prev/next navigation
+│   ├── hooks/
+│   │   ├── index.ts                # Barrel export with types
+│   │   ├── useOfficeWrappedData.ts # Data state management
+│   │   ├── useSlideActions.ts      # Download/share actions
+│   │   └── useSlideNavigation.ts   # Slide navigation logic
 │   ├── lib/
-│   │   └── utils.ts            # Utility functions
+│   │   └── utils.ts                # Utility functions
 │   └── types/
-│       └── index.ts            # TypeScript types
-├── public/                     # Static assets
-├── tailwind.config.ts          # Tailwind configuration
+│       └── index.ts                # TypeScript types
+├── public/                         # Static assets
+├── tailwind.config.ts              # Tailwind configuration
 └── package.json
 ```
 
@@ -98,21 +126,24 @@ Or deploy manually:
 
 ### Changing the Year
 
-Update the `year` state in `src/components/OfficeWrapped.tsx`:
+Update the `YEAR` constant in `src/components/OfficeWrapped.tsx`:
 
 ```typescript
-const [year] = useState(2024); // Change to desired year
+const YEAR = 2025; // Change to desired year
 ```
 
 ### Adding New Slides
 
 1. Add new slide data interface in `src/types/index.ts`
-2. Add slide to the `slides` array in `OfficeWrapped.tsx`
-3. Create the slide content JSX in the component
+2. Create a new slide component in `src/components/slides/` (e.g., `NewSlide.tsx`)
+3. Export the new slide from `src/components/slides/index.ts`
+4. Add the slide case to `src/components/SlideContent.tsx`
+5. Update the data hook in `src/hooks/useOfficeWrappedData.ts` if needed
 
 ### Modifying Stats Ranges
 
-Edit the randomization functions in `src/lib/utils.ts` to adjust the random number ranges.
+- Edit `src/lib/utils.ts` to adjust random number ranges for stats (meetings, emails, productivity, etc.)
+- Edit `src/hooks/useOfficeWrappedData.ts` to modify the buzzword pool (`BUZZWORD_POOL`) and status excuses (`STATUS_EXCUSES_POOL`)
 
 ## Contributing
 
