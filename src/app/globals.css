@@ -1,5 +1,5 @@
 /* Office Wrapped - Global Styles */
-/* v1.0.0 */
+/* v1.1.0 - Added export-specific styling for mobile */
 
 @tailwind base;
 @tailwind components;
@@ -93,5 +93,112 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
+  }
+}
+
+/* Export-specific styling for mobile - applied during image capture */
+/* Ensures proper spacing and prevents content from being squashed */
+
+/* Base exporting styles - ensure card renders properly */
+.exporting.slide-card {
+  /* Ensure the card has explicit dimensions during export */
+  min-height: auto !important;
+  overflow: visible !important;
+}
+
+/* Ensure header content is visible and has proper spacing during export */
+.exporting .slide-header {
+  padding: 0.875rem 1rem !important;
+  min-height: fit-content !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure header title doesn't get truncated during export */
+.exporting .slide-title {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  line-height: 1.25 !important;
+  word-wrap: break-word !important;
+}
+
+/* Ensure slide content area has proper spacing during export on mobile */
+.exporting .slide-content {
+  padding: 1rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: visible !important;
+}
+
+/* Ensure flex content centers properly and doesn't collapse */
+.exporting .slide-content > div {
+  flex-shrink: 0 !important;
+}
+
+/* Fix text rendering during export - prevent text from collapsing into blocks */
+.exporting * {
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+/* Ensure grid layouts maintain proper spacing on mobile export */
+.exporting .grid {
+  gap: 0.5rem !important;
+}
+
+/* Ensure text content has proper line height during export */
+.exporting p {
+  line-height: 1.5 !important;
+}
+
+/* Ensure heading text doesn't get compressed */
+.exporting h3 {
+  line-height: 1.25 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Ensure stat numbers and labels have proper spacing */
+.exporting .bg-slate-700\/50,
+.exporting [class*="bg-purple-500"],
+.exporting [class*="bg-red-500"],
+.exporting [class*="bg-orange-500"],
+.exporting [class*="bg-blue-500"],
+.exporting [class*="bg-green-500"],
+.exporting [class*="bg-yellow-500"] {
+  padding: 0.625rem !important;
+}
+
+/* Intro slide specific - ensure cards have proper mobile spacing */
+.exporting .grid-cols-3 > div {
+  padding: 0.5rem !important;
+}
+
+/* Summary slide specific - ensure 2x2 grid spacing */
+.exporting .grid-cols-2 > div {
+  padding: 0.625rem !important;
+}
+
+/* Ensure buzzword cloud has proper spacing during export */
+.exporting .flex-wrap {
+  gap: 0.5rem 0.75rem !important;
+}
+
+/* Desktop export styles - slightly more generous spacing */
+@media (min-width: 640px) {
+  .exporting .slide-header {
+    padding: 1rem !important;
+  }
+  
+  .exporting .slide-content {
+    padding: 1.5rem !important;
+  }
+  
+  .exporting .grid {
+    gap: 1rem !important;
+  }
+  
+  .exporting .grid-cols-3 > div,
+  .exporting .grid-cols-2 > div {
+    padding: 1rem !important;
   }
 }
