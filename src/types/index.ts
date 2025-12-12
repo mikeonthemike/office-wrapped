@@ -1,5 +1,5 @@
 // Types for Office Wrapped stats
-// v1.1.0 - Added coffeesConsumed stat
+// v1.2.0 - Added topBuzzword, latestPingDay, statusExcuses randomization
 
 export interface MeetingStats {
   count: number;
@@ -14,12 +14,19 @@ export interface NotificationStats {
   total: number;
   responseRate: number;
   latestPing: string;
+  latestPingDay: string;
 }
 
 export interface BuzzwordItem {
   word: string;
   size: string;
   weight: string;
+}
+
+export interface BuzzwordStats {
+  items: BuzzwordItem[];
+  topBuzzword: string;
+  topBuzzwordCount: number;
 }
 
 export interface EmailStats {
@@ -42,6 +49,7 @@ export interface StatusStats {
   busyTime: number;
   availableTime: number;
   longestAway: string;
+  excuses: string[];
 }
 
 export interface SlideInfo {

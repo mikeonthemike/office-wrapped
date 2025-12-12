@@ -1,8 +1,34 @@
 // Utility functions for Office Wrapped
-// v1.2.0 - Added coffeesConsumed randomization
+// v1.3.0 - Added latestPingDay, helper functions for random selection
 
 import html2canvas from 'html2canvas';
 import JSZip from 'jszip';
+
+// Days pool for latest ping randomization
+const LATEST_PING_DAYS = [
+  'Sunday',
+  'Saturday',
+  'Friday night',
+  'Christmas Eve',
+  'New Year\'s Day',
+  'your birthday',
+  'a bank holiday',
+];
+
+/**
+ * Get a random item from an array
+ */
+export const getRandomItem = <T>(items: T[]): T => {
+  return items[Math.floor(Math.random() * items.length)];
+};
+
+/**
+ * Get N random items from an array (without replacement)
+ */
+export const getRandomItems = <T>(items: T[], count: number): T[] => {
+  const shuffled = [...items].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
 
 /**
  * Captures a slide element as a blob
@@ -153,6 +179,7 @@ export const randomizeNotificationStats = () => ({
   total: Math.floor(Math.random() * (5000 - 1000) + 1000),
   responseRate: Math.floor(Math.random() * (99 - 60) + 60),
   latestPing: `${Math.floor(Math.random() * (11 - 8) + 8)}:${String(Math.floor(Math.random() * 59)).padStart(2, '0')} PM`,
+  latestPingDay: getRandomItem(LATEST_PING_DAYS),
 });
 
 /**

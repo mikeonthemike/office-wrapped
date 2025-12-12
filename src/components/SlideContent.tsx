@@ -1,5 +1,5 @@
 // SlideContent - Slide router component for Office Wrapped
-// v1.0.0 - Routes to correct slide based on activeSlide index
+// v1.1.0 - Pass topBuzzword to BuzzwordsSlide
 
 import React from 'react';
 import type { OfficeWrappedData } from '@/hooks';
@@ -48,6 +48,7 @@ export const SlideContent: React.FC<SlideContentProps> = ({ activeSlide, year, d
       return (
         <BuzzwordsSlide
           buzzwords={data.buzzwords}
+          topBuzzword={data.topBuzzword}
           topBuzzwordCount={data.topBuzzwordCount}
         />
       );
