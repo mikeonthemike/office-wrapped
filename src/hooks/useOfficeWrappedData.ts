@@ -1,7 +1,7 @@
 // useOfficeWrappedData - Data management hook for Office Wrapped
-// v1.2.0 - Added topBuzzword, latestPingDay, statusExcuses, expanded buzzword pool
+// v1.3.0 - Added auto-randomization on launch for unique visitor experience
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import type {
   MeetingStats,
   NotificationStats,
@@ -204,6 +204,11 @@ export function useOfficeWrappedData(): UseOfficeWrappedDataReturn {
     setTopBuzzword(randomTopBuzzword);
     setTopBuzzwordCount(randomizeBuzzwordCount());
   }, []);
+
+  // Auto-randomize on launch so every visitor gets unique stats
+  useEffect(() => {
+    randomizeData();
+  }, [randomizeData]);
 
   return {
     data: {
