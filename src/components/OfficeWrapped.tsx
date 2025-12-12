@@ -1,7 +1,7 @@
 'use client';
 
 // Office Wrapped - Main Component
-// v2.0.1 - Reduced spacing above/below slide for better stats visibility
+// v2.0.2 - Further reduced spacing for taller slide card visibility
 
 import React, { useRef } from 'react';
 import { useOfficeWrappedData, useSlideNavigation, useSlideActions } from '@/hooks';
@@ -96,8 +96,8 @@ const OfficeWrapped: React.FC = () => {
         onGoToSlide={goToSlide}
       />
 
-      {/* Help text - reduced margins */}
-      <p className="mt-2 sm:mt-3 text-slate-500 text-xs sm:text-sm text-center px-4">
+      {/* Help text - compact margins for more slide space */}
+      <p className="mt-1 sm:mt-2 text-slate-500 text-xs sm:text-sm text-center px-4">
         Generated for {YEAR} •{' '}
         <span className="hidden sm:inline">Use arrow keys to navigate • </span>
         Don&apos;t forget your timesheet
