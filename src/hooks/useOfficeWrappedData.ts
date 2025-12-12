@@ -1,5 +1,5 @@
 // useOfficeWrappedData - Data management hook for Office Wrapped
-// v1.0.0 - Extracted from main component
+// v1.1.0 - Added coffeesConsumed stat
 
 import { useState, useCallback } from 'react';
 import type {
@@ -69,6 +69,7 @@ const DEFAULT_PRODUCTIVITY_STATS: ProductivityStats = {
   peakHour: '10 AM',
   slumpHour: '2 PM',
   coffeeBreaks: 412,
+  coffeesConsumed: 782,
   actualWorkPercentage: 23,
 };
 

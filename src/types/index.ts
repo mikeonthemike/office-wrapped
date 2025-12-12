@@ -1,5 +1,5 @@
 // Types for Office Wrapped stats
-// v1.0.0
+// v1.1.0 - Added coffeesConsumed stat
 
 export interface MeetingStats {
   count: number;
@@ -33,6 +33,7 @@ export interface ProductivityStats {
   peakHour: string;
   slumpHour: string;
   coffeeBreaks: number;
+  coffeesConsumed: number;
   actualWorkPercentage: number;
 }
 

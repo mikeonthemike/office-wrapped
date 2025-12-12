@@ -1,5 +1,5 @@
 // Utility functions for Office Wrapped
-// v1.1.0 - Added zip download, updated to 2025
+// v1.2.0 - Added coffeesConsumed randomization
 
 import html2canvas from 'html2canvas';
 import JSZip from 'jszip';
@@ -168,12 +168,18 @@ export const randomizeEmailStats = () => ({
 /**
  * Randomize productivity stats
  */
-export const randomizeProductivityStats = () => ({
-  peakHour: `${Math.floor(Math.random() * (11 - 9) + 9)} AM`,
-  slumpHour: `${Math.floor(Math.random() * (4 - 2) + 2)} PM`,
-  coffeeBreaks: Math.floor(Math.random() * (600 - 300) + 300),
-  actualWorkPercentage: Math.floor(Math.random() * (35 - 15) + 15),
-});
+export const randomizeProductivityStats = () => {
+  const coffeeBreaks = Math.floor(Math.random() * (600 - 300) + 300);
+  // Coffees consumed is typically 1.5-2.5x the number of breaks (multiple cups per break)
+  const coffeesConsumed = Math.floor(coffeeBreaks * (Math.random() * 1 + 1.5));
+  return {
+    peakHour: `${Math.floor(Math.random() * (11 - 9) + 9)} AM`,
+    slumpHour: `${Math.floor(Math.random() * (4 - 2) + 2)} PM`,
+    coffeeBreaks,
+    coffeesConsumed,
+    actualWorkPercentage: Math.floor(Math.random() * (35 - 15) + 15),
+  };
+};
 
 /**
  * Randomize status stats
