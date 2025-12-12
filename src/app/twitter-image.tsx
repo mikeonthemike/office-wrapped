@@ -1,11 +1,11 @@
 // Office Wrapped - Dynamic Twitter Card Image
-// v1.0.0
+// v1.1.0 - Updated to 2025
 
 import { ImageResponse } from 'next/og';
 
 // Image metadata
 export const runtime = 'edge';
-export const alt = 'Office Wrapped 2024 - Your Year in Corporate Survival';
+export const alt = 'Office Wrapped 2025 - Your Year in Corporate Survival';
 export const size = {
   width: 1200,
   height: 630,
@@ -121,7 +121,7 @@ export default async function Image() {
               marginBottom: 24,
             }}
           >
-            2024
+            2025
           </div>
           <div
             style={{
