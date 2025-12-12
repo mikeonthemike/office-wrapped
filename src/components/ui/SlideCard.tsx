@@ -1,5 +1,5 @@
 // SlideCard component for Office Wrapped
-// v1.0.1 - Reduced content padding for better stats visibility on full screen
+// v1.0.2 - Further reduced header and content padding for better stats visibility
 
 import React, { forwardRef, ReactNode } from 'react';
 import type { SlideInfo } from '@/types';
@@ -25,8 +25,8 @@ export const SlideCard = forwardRef<HTMLDivElement, SlideCardProps>(
         ref={ref}
         className="relative w-full max-w-4xl aspect-[3/4] sm:aspect-[16/9] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col border-2 border-slate-700"
       >
-        {/* Card header */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 sm:p-6 flex justify-between items-center">
+        {/* Card header - compact padding for more content space */}
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 sm:p-4 flex justify-between items-center">
           <div className="flex-1 min-w-0">
             <div className="uppercase tracking-widest text-[10px] sm:text-xs font-semibold opacity-90">
               Year in Review
@@ -38,9 +38,9 @@ export const SlideCard = forwardRef<HTMLDivElement, SlideCardProps>(
           </div>
         </div>
 
-        {/* Slide content - reduced padding for better stats visibility */}
+        {/* Slide content - compact padding for better stats visibility */}
         <div
-          className={`flex-1 p-4 sm:p-8 bg-gradient-to-b from-slate-800 to-slate-900 relative transition-opacity duration-300 ${
+          className={`flex-1 p-3 sm:p-6 bg-gradient-to-b from-slate-800 to-slate-900 relative transition-opacity duration-300 ${
             isTransitioning ? 'opacity-0' : 'opacity-100'
           }`}
         >

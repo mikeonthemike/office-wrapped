@@ -1,7 +1,7 @@
 'use client';
 
 // Office Wrapped - Main Component
-// v2.0.0 - Refactored into smaller components with separated concerns
+// v2.0.1 - Reduced spacing above/below slide for better stats visibility
 
 import React, { useRef } from 'react';
 import { useOfficeWrappedData, useSlideNavigation, useSlideActions } from '@/hooks';
@@ -52,8 +52,8 @@ const OfficeWrapped: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex flex-col items-center justify-center p-2 sm:p-4 font-sans text-white">
-      {/* Header with title and controls */}
-      <div className="mb-4 sm:mb-8 flex flex-col items-center gap-3 sm:gap-4">
+      {/* Header with title and controls - reduced margins for more slide space */}
+      <div className="mb-3 sm:mb-4 flex flex-col items-center gap-2 sm:gap-3">
         <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight text-center">
           Office Wrapped {YEAR}
         </h1>
@@ -96,8 +96,8 @@ const OfficeWrapped: React.FC = () => {
         onGoToSlide={goToSlide}
       />
 
-      {/* Help text */}
-      <p className="mt-4 sm:mt-6 text-slate-500 text-xs sm:text-sm text-center px-4">
+      {/* Help text - reduced margins */}
+      <p className="mt-2 sm:mt-3 text-slate-500 text-xs sm:text-sm text-center px-4">
         Generated for {YEAR} •{' '}
         <span className="hidden sm:inline">Use arrow keys to navigate • </span>
         Don&apos;t forget your timesheet

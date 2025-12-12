@@ -1,5 +1,5 @@
 // SlideNavigation component for Office Wrapped
-// v1.0.0 - Extracted from main component
+// v1.0.1 - Reduced top margin for more slide space
 
 import React from 'react';
 
@@ -24,7 +24,7 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
   onGoToSlide,
 }) => {
   return (
-    <div className="mt-4 sm:mt-8 flex gap-2 sm:gap-4 items-center flex-wrap justify-center">
+    <div className="mt-3 sm:mt-4 flex gap-2 sm:gap-4 items-center flex-wrap justify-center">
       <button
         onClick={onPrevSlide}
         disabled={activeSlide === 0 || isDownloading}
