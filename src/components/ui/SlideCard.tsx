@@ -1,5 +1,5 @@
 // SlideCard component for Office Wrapped
-// v1.0.2 - Further reduced header and content padding for better stats visibility
+// v1.0.3 - Taller aspect ratio for better content visibility on full screen
 
 import React, { forwardRef, ReactNode } from 'react';
 import type { SlideInfo } from '@/types';
@@ -23,7 +23,7 @@ export const SlideCard = forwardRef<HTMLDivElement, SlideCardProps>(
     return (
       <div
         ref={ref}
-        className="relative w-full max-w-4xl aspect-[3/4] sm:aspect-[16/9] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col border-2 border-slate-700"
+        className="relative w-full max-w-4xl aspect-[3/4] sm:aspect-[4/3] bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col border-2 border-slate-700"
       >
         {/* Card header - compact padding for more content space */}
         <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 sm:p-4 flex justify-between items-center">

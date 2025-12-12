@@ -1,5 +1,5 @@
 // Footer component for Office Wrapped
-// v1.0.1 - Reduced margins for more slide space
+// v1.0.2 - Further reduced margins and padding for more slide space
 
 import React from 'react';
 
@@ -8,7 +8,7 @@ import React from 'react';
  */
 export const Footer: React.FC = () => {
   return (
-    <footer className="mt-4 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-800 w-full max-w-4xl text-center px-4">
+    <footer className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-slate-800 w-full max-w-4xl text-center px-4">
       <p className="text-slate-400 text-xs sm:text-sm mb-2 sm:mb-3">
         © {new Date().getFullYear()} Office Wrapped. All rights reserved.
       </p>
