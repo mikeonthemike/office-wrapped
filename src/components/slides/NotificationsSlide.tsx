@@ -1,5 +1,5 @@
 // NotificationsSlide component for Office Wrapped
-// v1.0.0 - Extracted from main component
+// v1.1.0 - Use randomized latestPingDay
 
 import React from 'react';
 import type { NotificationStats } from '@/types';
@@ -46,7 +46,7 @@ export const NotificationsSlide: React.FC<NotificationsSlideProps> = ({ notifica
         <p className="text-sm sm:text-lg text-slate-400 text-center">
           Latest panic reply:{' '}
           <span className="text-white font-semibold">{notificationStats.latestPing}</span>{' '}
-          on a Sunday
+          on {notificationStats.latestPingDay}
         </p>
       </div>
     </div>

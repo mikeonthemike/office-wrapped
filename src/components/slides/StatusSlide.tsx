@@ -1,5 +1,5 @@
 // StatusSlide component for Office Wrapped
-// v1.0.0 - Extracted from main component
+// v1.1.0 - Use randomized status excuses
 
 import React from 'react';
 import type { StatusStats } from '@/types';
@@ -47,9 +47,9 @@ export const StatusSlide: React.FC<StatusSlideProps> = ({ statusStats }) => {
           </div>
         </div>
         <div className="space-y-1 sm:space-y-2 text-slate-300 text-sm sm:text-base hidden sm:block">
-          <p className="text-center">📱 &quot;Totally not on my phone&quot;</p>
-          <p className="text-center">☕ &quot;In a meeting&quot; (making coffee)</p>
-          <p className="text-center">🤫 &quot;Do not disturb&quot; (avoiding work)</p>
+          {statusStats.excuses.map((excuse, index) => (
+            <p key={index} className="text-center">{excuse}</p>
+          ))}
         </div>
       </div>
     </div>

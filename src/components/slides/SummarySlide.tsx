@@ -1,5 +1,5 @@
 // SummarySlide component for Office Wrapped
-// v1.0.0 - Extracted from main component
+// v1.1.0 - Use coffeesConsumed instead of coffeeBreaks
 
 import React from 'react';
 import type { MeetingStats, EmailStats, ProductivityStats } from '@/types';
@@ -45,7 +45,7 @@ export const SummarySlide: React.FC<SummarySlideProps> = ({
         </div>
         <div className="bg-slate-700/50 p-3 sm:p-4 rounded-lg sm:rounded-xl">
           <div className="text-xl sm:text-3xl font-bold text-green-400">
-            {productivityStats.coffeeBreaks}
+            {productivityStats.coffeesConsumed}
           </div>
           <div className="text-xs sm:text-sm text-slate-400">Coffees consumed</div>
         </div>
